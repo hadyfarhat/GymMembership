@@ -5,24 +5,24 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class PersonalRegistrationFormPanel extends JPanel {
+    private Dimension textComponentDimensions;
+
     public PersonalRegistrationFormPanel() {
         setSize(RegistrationFormFrame.WIDTH, RegistrationFormFrame.HEIGHT);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        textComponentDimensions = new Dimension(this.getWidth() / 2, 30);
 
-        // Name
-        // Setting up a panel
         JPanel namePanel = new JPanel();
         namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.LINE_AXIS));
         namePanel.setMaximumSize(new Dimension(this.getWidth() / 2, 30));
-        // Label
         JLabel nameLabel = new JLabel("Name");
-        // Text Field
         JTextField name = new JTextField(10);
         name.setMaximumSize(new Dimension(namePanel.getMaximumSize().width / 2, namePanel.getMaximumSize().height));
-        // Add
         namePanel.add(nameLabel);
         namePanel.add(Box.createHorizontalGlue());
         namePanel.add(name);
+
+        // JPanel namePanel = new FormTextFieldPanel("Name", textComponentDimensions,10);
 
         // Date
         // Setting up a panel
