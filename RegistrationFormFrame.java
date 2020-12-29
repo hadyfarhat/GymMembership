@@ -1,22 +1,27 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class RegistrationFrame extends JFrame {
-    public RegistrationFrame() {
+public class RegistrationFormFrame extends JFrame {
+    public static final int WIDTH = 500;
+    public static final int HEIGHT = 500;
+
+    public RegistrationFormFrame() {
         setTitle("Registration");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 500);
     }
 
     public static void main(String[] args) {
-        RegistrationFrame frame = new RegistrationFrame();
+        RegistrationFormFrame frame = new RegistrationFormFrame();
         Container cp = frame.getContentPane();
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        frame.createPanelAndAddToTabbedPane("Personal", tabbedPane);
-        frame.createPanelAndAddToTabbedPane("Contact", tabbedPane);
-        frame.createPanelAndAddToTabbedPane("Health", tabbedPane);
-        frame.createPanelAndAddToTabbedPane("Membership", tabbedPane);
+        String[] formSectionNames = {"Personal", "Contact", "Health", "Membership"};
+        for (String name : formSectionNames) {
+            frame.createPanelAndAddToTabbedPane(name, tabbedPane);
+        }
+
+        tabbedPane.setComponentAt(0, new PersonalRegistrationFormPanel());
 
         cp.add(tabbedPane);
         frame.setVisible(true);
