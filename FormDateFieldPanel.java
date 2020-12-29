@@ -3,13 +3,10 @@ import java.awt.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-public class FormDateFieldPanel extends JPanel {
+public class FormDateFieldPanel extends FormTextComponentFieldPanel {
     public FormDateFieldPanel(String name, Dimension dimension, int dateFieldColumns, String pattern) {
-        this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-        this.setMaximumSize(dimension);
-        this.add(new JLabel(name));
-        this.add(Box.createHorizontalGlue());
-        this.add(this.createDateField(dateFieldColumns, pattern));
+        super(name, dimension);
+        add(this.createDateField(dateFieldColumns, pattern));
     }
 
     private JFormattedTextField createDateField(int columns, String pattern) {

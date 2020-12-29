@@ -1,12 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class FormTextFieldPanel extends JPanel {
+public class FormTextFieldPanel extends FormTextComponentFieldPanel {
     public FormTextFieldPanel(String name, Dimension dimension, int textFieldColumns) {
-        this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-        this.setMaximumSize(dimension);
-        this.add(new JLabel(name));
-        this.add(Box.createHorizontalGlue());
+        super(name, dimension);
         this.add(this.createTextField(textFieldColumns));
     }
 
