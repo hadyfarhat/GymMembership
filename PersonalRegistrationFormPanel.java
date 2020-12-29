@@ -12,34 +12,10 @@ public class PersonalRegistrationFormPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         textComponentDimensions = new Dimension(this.getWidth() / 2, 30);
 
-        JPanel namePanel = new JPanel();
-        namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.LINE_AXIS));
-        namePanel.setMaximumSize(new Dimension(this.getWidth() / 2, 30));
-        JLabel nameLabel = new JLabel("Name");
-        JTextField name = new JTextField(10);
-        name.setMaximumSize(new Dimension(namePanel.getMaximumSize().width / 2, namePanel.getMaximumSize().height));
-        namePanel.add(nameLabel);
-        namePanel.add(Box.createHorizontalGlue());
-        namePanel.add(name);
 
-        // JPanel namePanel = new FormTextFieldPanel("Name", textComponentDimensions,10);
-
-        // Date
-        // Setting up a panel
-        JPanel datePanel = new JPanel();
-        datePanel.setLayout(new BoxLayout(datePanel, BoxLayout.LINE_AXIS));
-        datePanel.setMaximumSize(new Dimension(this.getWidth() / 2, 30));
-        // Label
-        JLabel dateLabel = new JLabel("Date");
-        // Formatted Text Field
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-        JFormattedTextField dob = new JFormattedTextField(df);
-        dob.setColumns(10);
-        dob.setMaximumSize(new Dimension(datePanel.getMaximumSize().width / 2, datePanel.getMaximumSize().height));
-        // Add
-        datePanel.add(dateLabel);
-        datePanel.add(Box.createHorizontalGlue());
-        datePanel.add(dob);
+        JPanel namePanel = new FormTextFieldPanel("Name", textComponentDimensions,10);
+        JPanel datePanel = new FormDateFieldPanel(
+                "Date", textComponentDimensions, 10, "dd/MM/yyyy");
 
         // Gender
         // Setting up a panel
