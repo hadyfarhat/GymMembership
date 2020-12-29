@@ -11,7 +11,7 @@ public class FormDateFieldPanel extends FormFieldPanel {
 
     public FormDateFieldPanel(String name, String pattern) {
         super(name);
-        add(this.createDateField(RegistrationFormFrame.TEXT_FIELD_COLUMNS, pattern));
+        add(this.createDateField(RegistrationForm.TEXT_FIELD_COLUMNS, pattern));
     }
 
     private JFormattedTextField createDateField(int columns, String pattern) {

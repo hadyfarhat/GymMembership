@@ -9,7 +9,7 @@ public class FormTextFieldPanel extends FormFieldPanel {
 
     public FormTextFieldPanel(String name) {
         super(name);
-        this.add(this.createTextField(RegistrationFormFrame.TEXT_FIELD_COLUMNS));
+        this.add(this.createTextField(RegistrationForm.TEXT_FIELD_COLUMNS));
     }
 
     private JTextField createTextField(int columns) {

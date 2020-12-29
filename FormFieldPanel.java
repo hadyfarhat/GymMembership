@@ -11,7 +11,7 @@ public abstract class FormFieldPanel extends JPanel {
 
     public FormFieldPanel(String name) {
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-        setMaximumSize(RegistrationFormFrame.FIELD_DIMENSIONS);
+        setMaximumSize(RegistrationForm.FIELD_DIMENSIONS);
         add(new JLabel(name));
         add(Box.createHorizontalGlue());
     }
