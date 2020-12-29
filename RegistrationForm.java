@@ -3,15 +3,15 @@ import java.awt.*;
 
 public class RegistrationForm extends JFrame {
     public static final int WIDTH = 400;
-    public static final int HEIGHT = 400;
+    public static final int HEIGHT = 300;
     public static final int TEXT_FIELD_COLUMNS = 10;
     public static final int FIELD_RIGID_AREA_HEIGHT = 5;
-    public static final Dimension FIELD_DIMENSIONS = new Dimension(RegistrationForm.WIDTH / 2, 30);
+    public static final Dimension FIELD_DIMENSIONS = new Dimension(WIDTH - 100, 30);
 
     public RegistrationForm() {
         setTitle("Registration");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 500);
+        setSize(WIDTH, HEIGHT);
     }
 
     public static void main(String[] args) {
@@ -25,6 +25,7 @@ public class RegistrationForm extends JFrame {
         }
 
         tabbedPane.setComponentAt(0, new PersonalRegistrationFormPanel());
+        tabbedPane.setComponentAt(1, new ContactRegistrationFormPanel());
 
         cp.add(tabbedPane);
         frame.setVisible(true);
