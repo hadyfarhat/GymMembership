@@ -7,6 +7,11 @@ public class FormTextFieldPanel extends FormFieldPanel {
         this.add(this.createTextField(textFieldColumns));
     }
 
+    public FormTextFieldPanel(String name) {
+        super(name);
+        this.add(this.createTextField(RegistrationFormFrame.TEXT_FIELD_COLUMNS));
+    }
+
     private JTextField createTextField(int columns) {
         JTextField textField = new JTextField(columns);
         textField.setMaximumSize(new Dimension(

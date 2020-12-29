@@ -6,6 +6,7 @@ public class RegistrationFormFrame extends JFrame {
     public static final int HEIGHT = 500;
     public static final Dimension FIELD_DIMENSIONS = new Dimension(RegistrationFormFrame.WIDTH / 2, 30);
     public static final int FIELD_RIGID_AREA_HEIGHT = 5;
+    public static final int TEXT_FIELD_COLUMNS = 10;
 
     public RegistrationFormFrame() {
         setTitle("Registration");

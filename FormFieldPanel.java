@@ -8,4 +8,11 @@ public abstract class FormFieldPanel extends JPanel {
         add(new JLabel(name));
         add(Box.createHorizontalGlue());
     }
+
+    public FormFieldPanel(String name) {
+        setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+        setMaximumSize(RegistrationFormFrame.FIELD_DIMENSIONS);
+        add(new JLabel(name));
+        add(Box.createHorizontalGlue());
+    }
 }

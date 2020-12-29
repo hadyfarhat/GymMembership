@@ -6,7 +6,7 @@ public class PersonalRegistrationFormPanel extends RegistrationFormPanel {
     public PersonalRegistrationFormPanel() {
         super();
 
-        JPanel namePanel = new FormTextFieldPanel("Name", RegistrationFormFrame.FIELD_DIMENSIONS,10);
+        JPanel namePanel = new FormTextFieldPanel("Name");
         JPanel datePanel = new FormDateFieldPanel(
                 "Date", RegistrationFormFrame.FIELD_DIMENSIONS, 10, "dd/MM/yyyy");
         JPanel genderPanel = new FormRadioButtonsPanel(
