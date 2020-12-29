@@ -3,7 +3,7 @@ import java.awt.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-public class FormDateFieldPanel extends FormTextComponentFieldPanel {
+public class FormDateFieldPanel extends FormFieldPanel {
     public FormDateFieldPanel(String name, Dimension dimension, int dateFieldColumns, String pattern) {
         super(name, dimension);
         add(this.createDateField(dateFieldColumns, pattern));

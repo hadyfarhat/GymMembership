@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class FormTextFieldPanel extends FormTextComponentFieldPanel {
+public class FormTextFieldPanel extends FormFieldPanel {
     public FormTextFieldPanel(String name, Dimension dimension, int textFieldColumns) {
         super(name, dimension);
         this.add(this.createTextField(textFieldColumns));
