@@ -26,13 +26,13 @@ public class FormRadioButtonsPanel extends FormFieldPanel {
         for (int i = 0; i < buttons.size(); ++i) {
             group.add(buttons.get(i));
             this.add(buttons.get(i));
-            RegistrationForm.components.add(buttons.get(i));
+            RegistrationForm.components.put(buttons.get(i).getName(), buttons.get(i));
         }
     }
 
     private JRadioButton createRadioButton(String name) {
         JRadioButton button = new JRadioButton(name);
-        button.setName(name.toLowerCase());
+        button.setName(name);
         return button;
     }
 }
