@@ -1,9 +1,6 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
-import java.util.Date;
 
 public class Member {
     public int getId() {
