@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class RegistrationForm extends JFrame {
     public static final int WIDTH = 400;
@@ -7,6 +8,8 @@ public class RegistrationForm extends JFrame {
     public static final int TEXT_FIELD_COLUMNS = 10;
     public static final int FIELD_RIGID_AREA_HEIGHT = 5;
     public static final Dimension FIELD_DIMENSIONS = new Dimension(WIDTH - 100, 30);
+
+    public static HashMap<String, Component> components = new HashMap<String, Component>();
 
     public RegistrationForm() {
         setTitle("Registration");
@@ -26,8 +29,10 @@ public class RegistrationForm extends JFrame {
 
         tabbedPane.setComponentAt(0, new PersonalRegistrationFormPanel());
         tabbedPane.setComponentAt(1, new ContactRegistrationFormPanel());
-
-        cp.add(tabbedPane);
+        JButton button = new JButton("Submit");
+        button.addActionListener(new RegistrationFormSubmissionActionListener());
+        cp.add(tabbedPane, BorderLayout.CENTER);
+        cp.add(button, BorderLayout.SOUTH);
         frame.setVisible(true);
     }
 

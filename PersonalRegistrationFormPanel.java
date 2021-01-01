@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class PersonalRegistrationFormPanel extends RegistrationFormPanel {
 
@@ -7,7 +6,7 @@ public class PersonalRegistrationFormPanel extends RegistrationFormPanel {
         super();
 
         JPanel namePanel = new FormTextFieldPanel("Name");
-        JPanel datePanel = new FormDateFieldPanel("Date", "dd/MM/yyyy");
+        JPanel datePanel = new FormDateFieldPanel("Date", "yyyy-MM-dd");
         JPanel genderPanel = new FormRadioButtonsPanel("Gender", "Male", "Female");
 
         addPanelWithRigidArea(namePanel);
