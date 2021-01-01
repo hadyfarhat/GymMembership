@@ -1,11 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 public class FormRadioButtonsPanel extends FormFieldPanel {
-    private ButtonGroup group;
-    private List<JRadioButton> buttons;
 
     public FormRadioButtonsPanel(String name, Dimension dimension, String button1Name, String buttont2Name) {
         super(name, dimension);
@@ -18,15 +17,22 @@ public class FormRadioButtonsPanel extends FormFieldPanel {
     }
 
     private void addButtonsAndAssignToGroup(String button1Name, String button2Name) {
-        group = new ButtonGroup();
-        buttons = new ArrayList<>();
+        ButtonGroup group = new ButtonGroup();
+        List<JRadioButton> buttons = new ArrayList<>();
 
-        buttons.add(new JRadioButton(button1Name));
-        buttons.add(new JRadioButton(button2Name));
+        buttons.add(createRadioButton(button1Name));
+        buttons.add(createRadioButton(button2Name));
 
         for (int i = 0; i < buttons.size(); ++i) {
             group.add(buttons.get(i));
             this.add(buttons.get(i));
+            RegistrationForm.components.add(buttons.get(i));
         }
+    }
+
+    private JRadioButton createRadioButton(String name) {
+        JRadioButton button = new JRadioButton(name);
+        button.setName(name.toLowerCase());
+        return button;
     }
 }

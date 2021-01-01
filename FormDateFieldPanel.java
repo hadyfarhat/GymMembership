@@ -6,20 +6,23 @@ import java.text.SimpleDateFormat;
 public class FormDateFieldPanel extends FormFieldPanel {
     public FormDateFieldPanel(String name, Dimension dimension, int dateFieldColumns, String pattern) {
         super(name, dimension);
-        add(this.createDateField(dateFieldColumns, pattern));
+        add(this.createDateField(name, dateFieldColumns, pattern));
     }
 
     public FormDateFieldPanel(String name, String pattern) {
         super(name);
-        add(this.createDateField(RegistrationForm.TEXT_FIELD_COLUMNS, pattern));
+        JFormattedTextField field = this.createDateField(name, RegistrationForm.TEXT_FIELD_COLUMNS, pattern);
+        RegistrationForm.components.add(field);
+        add(field);
     }
 
-    private JFormattedTextField createDateField(int columns, String pattern) {
+    private JFormattedTextField createDateField(String name, int columns, String pattern) {
         DateFormat format = new SimpleDateFormat(pattern);
         JFormattedTextField dateField = new JFormattedTextField(format);
         dateField.setMaximumSize(new Dimension(
                 this.getMaximumSize().width / 2, this.getMaximumSize().height));
         dateField.setColumns(columns);
+        dateField.setName(name.toLowerCase());
         return dateField;
     }
 }
