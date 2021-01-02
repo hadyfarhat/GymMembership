@@ -1,6 +1,9 @@
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
+import java.util.HashMap;
 
 public class Member {
     public int getId() {
@@ -67,6 +70,75 @@ public class Member {
             Period interval = Period.between(this.getDob(), september1stOfCurrentYear);
             this.age = interval.getYears();
         }
+    }
+
+    /**
+     * Generate a random number between 10,000 and 100,000.
+     * It then loop through the members csv file to check if this number (id) is already taken.
+     * The method will keep on looping until the id is unique
+     * @return - unique generated id
+     */
+    public static int generateUniqueId() {
+        while (true) {
+            // 10,000 <= randomId <= 100,000
+            int randomId = (int) (Math.random() * ((100000 - 10000) + 1)) + 10000;
+            boolean idFound = false;
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("customerlist.csv"), StandardCharsets.UTF_8))) {
+                String line;
+                String[] lineRecords;
+                while((line = br.readLine()) != null) {
+                    lineRecords = line.split(",");
+                    try {
+                        if (!lineRecords[0].trim().isEmpty()) {
+                            int lineId = Integer.parseInt(lineRecords[0]);
+                            if (lineId == randomId) {
+                                idFound = true;
+                                break;
+                            }
+                        }
+                    } catch (NumberFormatException e) { };
+                }
+
+                if (!idFound) return randomId;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static HashMap<Integer, HashMap<String, String>> getAllMembers() {
+        HashMap<Integer, HashMap<String, String>> members = new HashMap<Integer, HashMap<String, String>>();
+        HashMap<String, String> temp;
+        try (BufferedReader br = new BufferedReader(new FileReader("customerlist.csv"))) {
+            String line;
+            temp = new HashMap<String, String>();
+            String[] lineRecords;
+            while((line = br.readLine()) != null) {
+                lineRecords = line.split(",");
+                // temp.put()
+                System.out.println("Id: " + lineRecords[0]);
+            }
+            // members.put()
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return members;
+    }
+
+
+    /**
+     * Since the id field is mandatory and important, every member should have one.
+     * This method will loop through each member, and if any member was found
+     * without an id, the function will generate an id and assign it to that member
+     */
+    public static void generateMissingIds() {
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(generateUniqueId());
     }
 
     private int id;
