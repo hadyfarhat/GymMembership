@@ -3,7 +3,10 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class Member {
     public int getId() {
@@ -74,7 +77,7 @@ public class Member {
 
     /**
      * Generate a random number between 10,000 and 100,000.
-     * It then loop through the members csv file to check if this number (id) is already taken.
+     * It then loops through the members csv file to check if this number (id) is already taken.
      * The method will keep on looping until the id is unique
      * @return - unique generated id
      */
@@ -116,8 +119,7 @@ public class Member {
             String[] lineRecords;
             while((line = br.readLine()) != null) {
                 lineRecords = line.split(",");
-                // temp.put()
-                System.out.println("Id: " + lineRecords[0]);
+                // temp.put("")
             }
             // members.put()
         } catch (IOException e) {
@@ -131,14 +133,40 @@ public class Member {
     /**
      * Since the id field is mandatory and important, every member should have one.
      * This method will loop through each member, and if any member was found
-     * without an id, the function will generate an id and assign it to that member
+     * without an id, the function will generate an id and assign it to that member.
+     * This function will only be called once and never be used again.
      */
     public static void generateMissingIds() {
-
+        // get all data from csv
+        List<List<String>> members = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("customerlist.csv"))) {
+            String line;
+            List<String> memberData;
+            while((line = br.readLine()) != null) {
+                memberData = Arrays.asList(line.split(","));
+                members.add(memberData);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // write data to file
+        try (PrintWriter writer = new PrintWriter(new File("customerlist.csv"))) {
+            for (List<String> member : members) {
+                // if id is empty
+                if (member.get(0).isEmpty()) {
+                    String uniqueId = Integer.toString(generateUniqueId());
+                    member.set(0, uniqueId);
+                }
+                writer.write(String.join(",", member));
+                writer.write("\n");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
-        System.out.println(generateUniqueId());
+        generateMissingIds();
     }
 
     private int id;
