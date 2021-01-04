@@ -14,12 +14,20 @@ public class Member {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public LocalDate getDob() {
@@ -158,6 +166,28 @@ public class Member {
     }
 
 
+    public void addToFile() throws IOException {
+        FileWriter fw = new FileWriter("customerlist.csv", true);
+        fw.append(Integer.toString(generateUniqueId()));
+        fw.append(',');
+        fw.append(this.getFirstName());
+        fw.append(',');
+        fw.append("");
+        fw.append(',');
+        fw.append(this.getDob().toString());
+        fw.append(',');
+        fw.append(this.getGender());
+        fw.append(',');
+        fw.append(this.getAddress());
+        fw.append(',');
+        fw.append(this.getTelephoneNumber());
+        fw.append('\n');
+
+        fw.flush();
+        fw.close();
+    }
+
+
     /**
      * Since the id field is mandatory and important, every member should have one.
      * This method will loop through each member, and if any member was found
@@ -212,7 +242,8 @@ public class Member {
     }
 
     private int id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private LocalDate dob;
     private String gender;
     private String address;

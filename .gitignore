@@ -1,3 +1,6 @@
+# Mac Numbers File
+*.numbers
+
 # Compiled class file
 *.class
 

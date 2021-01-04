@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
 
             switch (fieldName) {
                 case "Name":
-                    member.setName(getTextFromTextField(field));
+                    member.setFirstName(getTextFromTextField(field));
                     break;
                 case "Date":
                     LocalDate date = LocalDate.parse(getTextFromTextField(field));
@@ -40,11 +41,16 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
         }
 
         System.out.println("Member details");
-        System.out.println("Name: " + member.getName());
+        System.out.println("Name: " + member.getFirstName());
         System.out.println("Date of birth: " + member.getDob().toString());
         System.out.println("Telephone Number: " + member.getTelephoneNumber());
         System.out.println("Address: " + member.getAddress());
         System.out.println("Gender: " + member.getGender());
+        try {
+            member.addToFile();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
     private String getTextFromTextField(Component component) {
