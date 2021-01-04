@@ -3,10 +3,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Member {
     public int getId() {
@@ -110,18 +107,49 @@ public class Member {
         }
     }
 
+
+    /**
+     * Reads the data of the file customerlist.csv and returns it in the form of a HashMap.
+     * The key of the hashmap is the id of the member. Each key has its own hashmap which stores all
+     * the data of the member except for id. For ex:
+     * {
+     *   1: {"firstName": "Cristiano", "lastName": "Ronaldo", ....},
+     *   2: {"firstName": "Robert", "lastName": "Lewandowski", ....}
+     * }
+     *
+     * @return
+     */
     public static HashMap<Integer, HashMap<String, String>> getAllMembers() {
-        HashMap<Integer, HashMap<String, String>> members = new HashMap<Integer, HashMap<String, String>>();
+        HashMap<Integer, HashMap<String, String>> members = new HashMap<>();
         HashMap<String, String> temp;
         try (BufferedReader br = new BufferedReader(new FileReader("customerlist.csv"))) {
             String line;
-            temp = new HashMap<String, String>();
-            String[] lineRecords;
+            List<String> memberData = new ArrayList<>();
+
+            HashMap<Integer, String> lineFormat = new HashMap<>();
+            lineFormat.put(1, "lastName");
+            lineFormat.put(2, "firstName");
+            lineFormat.put(3, "dob");
+            lineFormat.put(4, "gender");
+            lineFormat.put(5, "address");
+            lineFormat.put(6, "telephoneNumber");
+
             while((line = br.readLine()) != null) {
-                lineRecords = line.split(",");
-                // temp.put("")
+                temp = new HashMap<>();
+                memberData = Arrays.asList(line.split(","));
+                int count = 1;
+                while (count < 7) {
+                    try {
+                        temp.put(lineFormat.get(count), memberData.get(count));
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        temp.put(lineFormat.get(count), "");
+                    };
+                    count++;
+                }
+                try {
+                    members.put(Integer.parseInt(memberData.get(0)), temp);
+                } catch (NumberFormatException e) {};
             }
-            // members.put()
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -166,7 +194,21 @@ public class Member {
     }
 
     public static void main(String[] args) {
-        generateMissingIds();
+        // HashMap<Integer, HashMap<String, String>> members = getAllMembers();
+        // for (Map.Entry<Integer, HashMap<String, String>> member : members.entrySet()) {
+        //     System.out.println("Id: " + member.getKey());
+        //     for (Map.Entry<String, String> memberData : member.getValue().entrySet()) {
+        //         System.out.println(memberData.getKey() + " " + memberData.getValue());
+        //     }
+        // }
+        HashMap<Integer, HashMap<String, String>> members = getAllMembers();
+        System.out.println(members.size());
+        for (Map.Entry<Integer, HashMap<String, String>> memberData : members.entrySet()) {
+            for (Map.Entry<String, String> data : memberData.getValue().entrySet()) {
+                System.out.println(data.getKey() + " " + data.getValue());
+            }
+            System.out.println();
+        }
     }
 
     private int id;
