@@ -3,6 +3,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Member {
@@ -32,6 +33,10 @@ public class Member {
 
     public LocalDate getDob() {
         return dob;
+    }
+
+    public String getFormattedDob() {
+        return dob.format(dobFormatter);
     }
 
     public void setDob(LocalDate dob) {
@@ -174,7 +179,7 @@ public class Member {
         fw.append(',');
         fw.append("");
         fw.append(',');
-        fw.append(this.getDob().toString());
+        fw.append(this.getFormattedDob());
         fw.append(',');
         fw.append(this.getGender());
         fw.append(',');
@@ -245,6 +250,7 @@ public class Member {
     private String firstName;
     private String lastName;
     private LocalDate dob;
+    public static DateTimeFormatter dobFormatter =  DateTimeFormatter.ofPattern("dd/MM/yy");
     private String gender;
     private String address;
     private String telephoneNumber;

@@ -6,7 +6,7 @@ public class PersonalRegistrationFormPanel extends RegistrationFormPanel {
         super();
 
         JPanel namePanel = new FormTextFieldPanel("Name");
-        JPanel datePanel = new FormDateFieldPanel("Date", "yyyy-MM-dd");
+        JPanel datePanel = new FormDateFieldPanel("Date", "dd/MM/yy");
         JPanel genderPanel = new FormRadioButtonsPanel("Gender", "Male", "Female");
 
         addPanelWithRigidArea(namePanel);

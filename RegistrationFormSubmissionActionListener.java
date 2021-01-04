@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 public class RegistrationFormSubmissionActionListener implements ActionListener {
@@ -19,7 +20,7 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
                     member.setFirstName(getTextFromTextField(field));
                     break;
                 case "Date":
-                    LocalDate date = LocalDate.parse(getTextFromTextField(field));
+                    LocalDate date = LocalDate.parse(getTextFromTextField(field), Member.dobFormatter);
                     member.setDob(date);
                     break;
                 case "Telephone Number":
