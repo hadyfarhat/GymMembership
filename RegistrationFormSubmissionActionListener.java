@@ -16,8 +16,11 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
             Component field = entry.getValue();
 
             switch (fieldName) {
-                case "Name":
+                case "First Name":
                     member.setFirstName(getTextFromTextField(field));
+                    break;
+                case "Last Name":
+                    member.setLastName(getTextFromTextField(field));
                     break;
                 case "Date":
                     LocalDate date = LocalDate.parse(getTextFromTextField(field), Member.dobFormatter);
@@ -42,7 +45,8 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
         }
 
         System.out.println("Member details");
-        System.out.println("Name: " + member.getFirstName());
+        System.out.println("First Name: " + member.getFirstName());
+        System.out.println("Last Name: " + member.getLastName());
         System.out.println("Date of birth: " + member.getDob().toString());
         System.out.println("Telephone Number: " + member.getTelephoneNumber());
         System.out.println("Address: " + member.getAddress());

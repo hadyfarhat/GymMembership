@@ -171,13 +171,17 @@ public class Member {
     }
 
 
+    /**
+     * Appends member to csv file
+     * @throws IOException
+     */
     public void addToFile() throws IOException {
         FileWriter fw = new FileWriter("customerlist.csv", true);
         fw.append(Integer.toString(generateUniqueId()));
         fw.append(',');
         fw.append(this.getFirstName());
         fw.append(',');
-        fw.append("");
+        fw.append(this.getLastName());
         fw.append(',');
         fw.append(this.getFormattedDob());
         fw.append(',');
