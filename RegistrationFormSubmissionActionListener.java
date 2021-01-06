@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 public class RegistrationFormSubmissionActionListener implements ActionListener {
@@ -62,15 +61,15 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
         System.out.println("Member details");
         System.out.println("First Name: " + member.getFirstName());
         System.out.println("Last Name: " + member.getLastName());
-        System.out.println("Date of birth: " + member.getDob().toString());
+        System.out.println("Date of birth: " + member.getFormattedDob());
         System.out.println("Telephone Number: " + member.getTelephoneNumber());
         System.out.println("Address: " + member.getAddress());
         System.out.println("Gender: " + member.getGender());
 
         System.out.println("Membership details");
         System.out.println("Type: " + membership.getType());
-        System.out.println("Start Date: " + membership.getStartDate());
-        System.out.println("End Date: " + membership.getEndDate());
+        System.out.println("Start Date: " + membership.getFormattedStartDate());
+        System.out.println("End Date: " + membership.getFormattedEndDate());
         System.out.println("Price: " + membership.getPrice());
 
         try {

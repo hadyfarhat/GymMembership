@@ -18,7 +18,7 @@ public class FormTextFieldPanel extends FormFieldPanel {
         JTextField textField = new JTextField(columns);
         textField.setMaximumSize(new Dimension(
                 this.getMaximumSize().width / 2, this.getMaximumSize().height));
-        textField.setName(name.toLowerCase());
+        textField.setName(name);
         return textField;
     }
 }
