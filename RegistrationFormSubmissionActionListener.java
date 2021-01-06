@@ -45,12 +45,10 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
                     LocalDate startDate = LocalDate.parse(getTextFromTextField(field), Membership.dateFormatter);
                     membership.setStartDate(startDate);
                     break;
-                case "End Date":
-                    LocalDate endDate = LocalDate.parse(getTextFromTextField(field), Membership.dateFormatter);
-                    membership.setEndDate(endDate);
-                    break;
-                case "Price":
-                    membership.setPrice(Integer.parseInt(getTextFromTextField(field)));
+                case "Duration":
+                    String duration = getSelectedItemInComboBox((JComboBox) field);
+                    int durationInt = convertDurationIntoInt(duration);
+                    membership.calculateEndDate(durationInt);
                     break;
                 default:
                     System.out.println("Field not recognised");
@@ -86,5 +84,37 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
     private boolean radioButtonIsSelected(Component component) {
         JRadioButton button = (JRadioButton) component;
         return button.isSelected();
+    }
+
+    private String getSelectedItemInComboBox(JComboBox comboBox) {
+        return (String) comboBox.getSelectedItem();
+    }
+
+    private int convertDurationIntoInt(String duration) {
+        int durationInt;
+        switch(duration) {
+            case "1 month":
+                durationInt = 1;
+                break;
+            case "2 months":
+                durationInt = 2;
+                break;
+            case "3 months":
+                durationInt = 3;
+                break;
+            case "4 months":
+                durationInt = 4;
+                break;
+            case "5 months":
+                durationInt = 5;
+                break;
+            case "6 months":
+                durationInt = 6;
+                break;
+            default:
+                durationInt = 0;
+        }
+
+        return durationInt;
     }
 }

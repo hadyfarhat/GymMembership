@@ -26,6 +26,12 @@ public class Membership {
         this.endDate = endDate;
     }
 
+    public void calculateEndDate(int duration) {
+        LocalDate startDate = getStartDate();
+        LocalDate endDate = startDate.plusMonths(duration);
+        this.setEndDate(endDate);
+    }
+
     public String getType() {
         return type;
     }
