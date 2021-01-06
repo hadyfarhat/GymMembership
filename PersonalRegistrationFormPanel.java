@@ -1,18 +1,19 @@
 import javax.swing.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class PersonalRegistrationFormPanel extends RegistrationFormPanel {
 
     public PersonalRegistrationFormPanel() {
         super();
 
-        JPanel firstNamePanel = new FormTextFieldPanel("First Name");
-        JPanel lastNamePanel = new FormTextFieldPanel("Last Name");
-        JPanel datePanel = new FormDateFieldPanel("Date", "dd/MM/yy");
-        JPanel genderPanel = new FormRadioButtonsPanel("Gender", "Male", "Female");
+        List<JPanel> panels = Arrays.asList(
+                new FormTextFieldPanel("First Name"),
+                new FormTextFieldPanel("Last Name"),
+                new FormDateFieldPanel("Date", "dd/MM/yy"),
+                new FormRadioButtonsPanel("Gender", "Male", "Female")
+        );
 
-        addPanelWithRigidArea(firstNamePanel);
-        addPanelWithRigidArea(lastNamePanel);
-        addPanelWithRigidArea(datePanel);
-        add(genderPanel);
+        addPanels(panels);
     }
 }

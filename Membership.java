@@ -6,12 +6,20 @@ public class Membership {
         return startDate;
     }
 
+    public String getFormattedStartDate() {
+        return startDate.format(dateFormatter);
+    }
+
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
     public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public String getFormattedEndDate() {
+        return endDate.format(dateFormatter);
     }
 
     public void setEndDate(LocalDate endDate) {

@@ -1,15 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class ContactRegistrationFormPanel extends RegistrationFormPanel {
 
     public ContactRegistrationFormPanel() {
         super();
 
-        JPanel postalAddress = new FormTextFieldPanel("Postal Address");
-        JPanel telephoneNumber = new FormTextFieldPanel("Telephone Number");
+        List<JPanel> panels = Arrays.asList(
+            new FormTextFieldPanel("Postal Address"),
+            new FormTextFieldPanel("Telephone Number")
+        );
 
-        addPanelWithRigidArea(postalAddress);
-        add(telephoneNumber);
+        addPanels(panels);
     }
 }

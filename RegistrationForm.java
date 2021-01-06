@@ -29,6 +29,8 @@ public class RegistrationForm extends JFrame {
 
         tabbedPane.setComponentAt(0, new PersonalRegistrationFormPanel());
         tabbedPane.setComponentAt(1, new ContactRegistrationFormPanel());
+        tabbedPane.setComponentAt(3, new MembershipRegistrationForm());
+
         JButton button = new JButton("Submit");
         button.addActionListener(new RegistrationFormSubmissionActionListener());
         cp.add(tabbedPane, BorderLayout.CENTER);
