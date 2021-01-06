@@ -38,8 +38,11 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
                 case "Male":
                     if (radioButtonIsSelected(field)) member.setGender("Male");
                     break;
-                case "Membership Type":
-                    membership.setType(getTextFromTextField(field));
+                case "Individual":
+                    if (radioButtonIsSelected(field)) membership.setType("Individual");
+                    break;
+                case "Family":
+                    if (radioButtonIsSelected(field)) membership.setType("Family");
                     break;
                 case "Start Date":
                     LocalDate startDate = LocalDate.parse(getTextFromTextField(field), Membership.dateFormatter);
@@ -49,6 +52,7 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
                     String duration = getSelectedItemInComboBox((JComboBox) field);
                     int durationInt = convertDurationIntoInt(duration);
                     membership.calculateEndDate(durationInt);
+                    membership.calculatePrice(durationInt);
                     break;
                 default:
                     System.out.println("Field not recognised");
@@ -68,7 +72,7 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
         System.out.println("Type: " + membership.getType());
         System.out.println("Start Date: " + membership.getFormattedStartDate());
         System.out.println("End Date: " + membership.getFormattedEndDate());
-        System.out.println("Price: " + membership.getPrice());
+        System.out.println("Price: £" + membership.getPrice());
 
         try {
             member.addToFile();

@@ -48,6 +48,16 @@ public class Membership {
         this.price = price;
     }
 
+    public void calculatePrice(int duration) {
+        int price = 0;
+        if (type.equals("Individual")) {
+            price = 36 * duration;
+        } else if (type.equals("Family")) {
+            price = 60 * duration;
+        }
+        setPrice(price);
+    }
+
     private LocalDate startDate;
     private LocalDate endDate;
     public static DateTimeFormatter dateFormatter =  DateTimeFormatter.ofPattern("dd/MM/yy");
