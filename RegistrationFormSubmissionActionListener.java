@@ -74,8 +74,9 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
         System.out.println("End Date: " + membership.getFormattedEndDate());
         System.out.println("Price: £" + membership.getPrice());
 
+        membership.setMember(member);
         try {
-            member.addToFile();
+            membership.addToFile();
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
