@@ -2,10 +2,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Membership {
     public LocalDate getStartDate() {
@@ -224,6 +221,29 @@ public class Membership {
         }
 
         return members;
+    }
+
+    /**
+     * Loops over the ids of the customer list to check if the passed id parameter is equal to one of them.
+     * @param id id to be checked against the ids in the customer list
+     * @return whether the id exists or not
+     */
+    public static boolean idExists(int id) {
+        boolean found = false;
+
+        HashMap<Integer, HashMap<String, String>> allMembers = getAllMembers();
+        for (Map.Entry<Integer, HashMap<String, String>> member : allMembers.entrySet()) {
+            if (id == member.getKey()) {
+                found = true;
+                break;
+            }
+        }
+
+        return found;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("ID exists: " + idExists(416100));
     }
 
     private LocalDate startDate;
