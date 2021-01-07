@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Represents the personal section of the registration form.
- * It has the following field:
+ * It has the following fields:
  * <ul>
  *     <li>First Name - Text Field</li>
  *     <li>Last Name - Text Field</li>
