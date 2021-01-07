@@ -1,8 +1,17 @@
 import javax.swing.*;
-import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Represents the membership section of the registration form.
+ * It has the following fields:
+ * <ul>
+ *     <li>Membership Type - Radio Buttons (Individual or Family)</li>
+ *     <li>Start Date - Date Field</li>
+ *     <li>Duration - Combobox Field ('1 month', '2 months', ... '6 months')</li>
+ * </ul>
+ *
+ */
 public class MembershipRegistrationForm extends RegistrationFormPanel {
     public MembershipRegistrationForm() {
         super();
