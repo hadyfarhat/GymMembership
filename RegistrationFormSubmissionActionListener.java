@@ -11,7 +11,7 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
         Member member = new Member();
         Membership membership = new Membership();
 
-        for (Map.Entry<String, Component> entry : RegistrationForm.components.entrySet()) {
+        for (Map.Entry<String, Component> entry : MembershipForm.components.entrySet()) {
             String fieldName = entry.getKey();
             Component field = entry.getValue();
 

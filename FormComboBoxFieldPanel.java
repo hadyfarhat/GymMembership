@@ -9,7 +9,7 @@ public class FormComboBoxFieldPanel extends FormFieldPanel {
      * Class constructor specifying the name of the label and list of values for the combobox
      * It creates a combobox field and sets its name to the provided name parameter. It also sets its options to
      * the provided list parameter
-     * It then adds the combobox field to the components list in {@link RegistrationForm}
+     * It then adds the combobox field to the components list in {@link MembershipForm}
      * It then adds the combobox field to this panel
      *
      * @param name name of the label
@@ -18,7 +18,7 @@ public class FormComboBoxFieldPanel extends FormFieldPanel {
     public FormComboBoxFieldPanel(String name, String[] list) {
         super(name);
         JComboBox comboBox = createComboBoxField(name, list);
-        RegistrationForm.components.put(name, comboBox);
+        MembershipForm.components.put(name, comboBox);
         this.add(comboBox);
     }
 

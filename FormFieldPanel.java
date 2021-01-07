@@ -34,7 +34,7 @@ public abstract class FormFieldPanel extends JPanel {
     /**
      * Class constructor specifying label name and default maximum size dimension
      * Sets the layout of this panel to Box Layout with a horizontal (line axis) orientation
-     * Sets the maximum size of this panel to the FIELD_DIMENSIONS constant found in {@link RegistrationForm}
+     * Sets the maximum size of this panel to the FIELD_DIMENSIONS constant found in {@link MembershipForm}
      * Adds a label to this panel and sets its name to the provded name parameter
      * Adds a horizontal glue next to the label in order to organise it next to the field that will be added later
      *
@@ -42,7 +42,7 @@ public abstract class FormFieldPanel extends JPanel {
      */
     public FormFieldPanel(String name) {
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-        setMaximumSize(RegistrationForm.FIELD_DIMENSIONS);
+        setMaximumSize(MembershipForm.FIELD_DIMENSIONS);
         add(new JLabel(name));
         add(Box.createHorizontalGlue());
     }

@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
 public class FormRadioButtonsPanel extends FormFieldPanel {
@@ -26,7 +25,7 @@ public class FormRadioButtonsPanel extends FormFieldPanel {
         for (int i = 0; i < buttons.size(); ++i) {
             group.add(buttons.get(i));
             this.add(buttons.get(i));
-            RegistrationForm.components.put(buttons.get(i).getName(), buttons.get(i));
+            MembershipForm.components.put(buttons.get(i).getName(), buttons.get(i));
         }
     }
 

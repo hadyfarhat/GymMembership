@@ -11,8 +11,8 @@ public class FormDateFieldPanel extends FormFieldPanel {
 
     public FormDateFieldPanel(String name, String pattern) {
         super(name);
-        JFormattedTextField field = this.createDateField(name, RegistrationForm.TEXT_FIELD_COLUMNS, pattern);
-        RegistrationForm.components.put(name, field);
+        JFormattedTextField field = this.createDateField(name, MembershipForm.TEXT_FIELD_COLUMNS, pattern);
+        MembershipForm.components.put(name, field);
         add(field);
     }
 

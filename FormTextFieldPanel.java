@@ -9,8 +9,8 @@ public class FormTextFieldPanel extends FormFieldPanel {
 
     public FormTextFieldPanel(String name) {
         super(name);
-        JTextField field = this.createTextField(name, RegistrationForm.TEXT_FIELD_COLUMNS);
-        RegistrationForm.components.put(name, field);
+        JTextField field = this.createTextField(name, MembershipForm.TEXT_FIELD_COLUMNS);
+        MembershipForm.components.put(name, field);
         this.add(field);
     }
 
