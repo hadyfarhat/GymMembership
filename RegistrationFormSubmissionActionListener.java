@@ -5,7 +5,24 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Map;
 
+/**
+ * Represents the action listener for the submit button on the Registration Form.
+ * Once this button is clicked, this class gets called and the function actionPerformed() gets executed.
+ * This class acts as a controller between the form (UI), the validators and the database (model).
+ */
 public class RegistrationFormSubmissionActionListener implements ActionListener {
+    private Component parentComponent;
+
+    /**
+     * Class constructor which initialises the parent component reference.
+     * This reference is mainly used when displaying message dialogs.
+     *
+     * @param parentComponent reference to the registration form that contains the button of this action listener
+     */
+    public RegistrationFormSubmissionActionListener(Component parentComponent) {
+        this.parentComponent = parentComponent;
+    }
+
     @Override
     public void actionPerformed(java.awt.event.ActionEvent e) {
         Member member = new Member();
@@ -77,6 +94,8 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
         membership.setMember(member);
         try {
             membership.addToFile();
+            MembershipForm.clearFormComponents();
+            JOptionPane.showMessageDialog(parentComponent, "Member has been registered");
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }

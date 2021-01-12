@@ -49,7 +49,7 @@ public class MembershipForm extends JFrame {
         tabbedPane.setComponentAt(3, new MembershipRegistrationForm());
 
         JButton button = new JButton("Register");
-        button.addActionListener(new RegistrationFormSubmissionActionListener());
+        button.addActionListener(new RegistrationFormSubmissionActionListener(tabbedPane));
 
         JPanel registrationForm = new JPanel();
         registrationForm.setLayout(new BorderLayout());
