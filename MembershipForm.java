@@ -57,4 +57,23 @@ public class MembershipForm extends JFrame {
 
         return registrationForm;
     }
+
+    /**
+     * Creates the check in form panel which contains an ID text field and a sign in button
+     *
+     * @return check in form panel
+     */
+    public JPanel createCheckInForm() {
+        JPanel signInIDPanel = new SignInIDPanel();
+
+        JButton button = new JButton("Sign in");
+        button.addActionListener(new CheckInFormActionListener());
+
+        JPanel checkInForm = new JPanel();
+        checkInForm.setLayout(new BorderLayout());
+        checkInForm.add(signInIDPanel, BorderLayout.CENTER);
+        checkInForm.add(button, BorderLayout.SOUTH);
+
+        return checkInForm;
+    }
 }

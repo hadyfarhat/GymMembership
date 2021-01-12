@@ -27,7 +27,7 @@ public abstract class RegistrationFormPanel extends JPanel {
      * @param panel the panel to be added to this panel
      * @param rigidAreaHeight the height of the rigid area that will be added underneath the provided panel
      */
-    private void addPanelWithRigidArea(JPanel panel, int rigidAreaHeight) {
+    public void addPanelWithRigidArea(JPanel panel, int rigidAreaHeight) {
         add(panel);
         add(Box.createRigidArea(new Dimension(MembershipForm.WIDTH, rigidAreaHeight)));
     }
@@ -38,7 +38,7 @@ public abstract class RegistrationFormPanel extends JPanel {
      *
      * @param panel the panel to be added to this panel
      */
-    private void addPanelWithRigidArea(JPanel panel) {
+    public void addPanelWithRigidArea(JPanel panel) {
         add(panel);
         add(Box.createRigidArea(new Dimension(MembershipForm.WIDTH, MembershipForm.FIELD_RIGID_AREA_HEIGHT)));
     }
