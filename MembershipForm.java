@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -76,6 +77,22 @@ public class MembershipForm extends JFrame {
         checkInForm.add(button, BorderLayout.SOUTH);
 
         return checkInForm;
+    }
+
+    /**
+     * Creates the membership management panel which contains an editable table of all member data
+     *
+     * @return membership management panel
+     */
+    public JPanel createMembershipManagementPanel() {
+        JTable membershipTable = new JTable(new MembershipTableModel());
+        System.out.println(membershipTable.getTableHeader());
+        JScrollPane tableScrollPane = new JScrollPane(membershipTable);
+        JPanel membershipManagementPanel = new JPanel();
+        membershipManagementPanel.setLayout(new BorderLayout());
+        membershipManagementPanel.add(tableScrollPane, BorderLayout.CENTER);
+        
+        return membershipManagementPanel;
     }
 
     /**

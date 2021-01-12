@@ -199,12 +199,16 @@ public class Membership {
             lineFormat.put(4, "gender");
             lineFormat.put(5, "address");
             lineFormat.put(6, "telephoneNumber");
+            lineFormat.put(7, "type");
+            lineFormat.put(8, "startDate");
+            lineFormat.put(9, "endDate");
+            lineFormat.put(10, "price");
 
             while((line = br.readLine()) != null) {
                 temp = new HashMap<>();
                 memberData = Arrays.asList(line.split(","));
                 int count = 1;
-                while (count < 7) {
+                while (count < 11) {
                     try {
                         temp.put(lineFormat.get(count), memberData.get(count));
                     } catch (ArrayIndexOutOfBoundsException e) {

@@ -8,10 +8,13 @@ public class ClubMembership {
 
         JPanel registrationForm = membershipForm.createRegistrationForm();
         JPanel checkInForm = membershipForm.createCheckInForm();
+        JPanel membershipManagementForm = membershipForm.createMembershipManagementPanel();
 
         JTabbedPane mainPane = new JTabbedPane();
         mainPane.addTab("Registration Form", null, registrationForm, "Registration Form");
         mainPane.addTab("Check In Form", null, checkInForm, "Check In Form");
+        mainPane.addTab("Membership Management", null, membershipManagementForm, "Membership Management");
+
 
         contentPane.add(mainPane, BorderLayout.CENTER);
 
