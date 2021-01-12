@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MembershipForm extends JFrame {
     public static final int WIDTH = 400;
@@ -75,5 +76,38 @@ public class MembershipForm extends JFrame {
         checkInForm.add(button, BorderLayout.SOUTH);
 
         return checkInForm;
+    }
+
+    /**
+     * This will clear all the data found inside form components.
+     * It will loop through each component in the components map and will
+     * clear its data depending on its type
+     */
+    public static void clearFormComponents() {
+        for (Map.Entry<String, Component> entry : MembershipForm.components.entrySet()) {
+            Component field = entry.getValue();
+            String fieldClassName = field.getClass().getName();
+            switch (fieldClassName) {
+                case "javax.swing.JFormattedTextField":
+                    JFormattedTextField jFormattedTextField = (JFormattedTextField) field;
+                    jFormattedTextField.setText("");
+                    break;
+                case "javax.swing.JTextField":
+                    JTextField jTextField = (JTextField) field;
+                    jTextField.setText("");
+                    break;
+                case "javax.swing.JRadioButton":
+                    JRadioButton jRadioButton = (JRadioButton) field;
+                    // This doesn't work. Only way to clear radio button selection is by using is button group
+                    jRadioButton.setSelected(false);
+                    break;
+                case "javax.swing.JComboBox":
+                    JComboBox jComboBox = (JComboBox) field;
+                    jComboBox.setSelectedIndex(0);
+                    break;
+                default:
+                    System.out.println("Component not recognised");
+            }
+        }
     }
 }
