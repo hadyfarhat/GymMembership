@@ -95,6 +95,7 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
         try {
             membership.addToFile();
             MembershipForm.clearFormComponents();
+            MembershipManagementPanel.refreshTableData();
             JOptionPane.showMessageDialog(parentComponent, "Member has been registered");
         } catch (IOException ioException) {
             ioException.printStackTrace();

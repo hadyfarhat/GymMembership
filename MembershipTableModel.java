@@ -102,6 +102,31 @@ public class MembershipTableModel extends AbstractTableModel {
     }
 
     /**
+     * Removes the specified row from the table and from the customer list csv file
+     *
+     * @param rowIndex
+     */
+    public void removeRow(int rowIndex) {
+        data.remove(rowIndex);
+
+        try {
+            Membership.updateData(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        fireTableRowsDeleted(rowIndex, rowIndex);
+    }
+
+    /**
+     * Retrieves all the data from the customer list csv file and displays it on the table
+     */
+    public void refreshData() {
+        this.data = getData();
+        fireTableDataChanged();
+    }
+
+    /**
      * Used for testing purposes
      */
     private void printDate() {

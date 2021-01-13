@@ -87,10 +87,7 @@ public class MembershipForm extends JFrame {
      */
     public JPanel createMembershipManagementPanel() {
         JTable membershipTable = new JTable(new MembershipTableModel());
-        JScrollPane tableScrollPane = new JScrollPane(membershipTable);
-        JPanel membershipManagementPanel = new JPanel();
-        membershipManagementPanel.setLayout(new BorderLayout());
-        membershipManagementPanel.add(tableScrollPane, BorderLayout.CENTER);
+        JPanel membershipManagementPanel = new MembershipManagementPanel(membershipTable);
 
         return membershipManagementPanel;
     }
