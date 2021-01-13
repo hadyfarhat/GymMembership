@@ -1,4 +1,5 @@
 import javax.swing.table.AbstractTableModel;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +15,7 @@ public class MembershipTableModel extends AbstractTableModel {
             // Member details
             "ID", "First Name", "Last Name", "Date of Birth", "Gender", "Address", "Telephone Number",
             // Membership details
-            "Start Date", "End Date", "Type", "Price"
+            "Type", "Start Date", "End Date", "Price"
     };
     List<List<String>> data = getData();
 
@@ -41,6 +42,13 @@ public class MembershipTableModel extends AbstractTableModel {
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         data.get(rowIndex).set(columnIndex, (String) aValue);
+        fireTableCellUpdated(rowIndex, columnIndex);
+
+        try {
+            Membership.updateData(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MembershipForm extends JFrame {
-    public static final int WIDTH = 400;
-    public static final int HEIGHT = 300;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 500;
     public static final int TEXT_FIELD_COLUMNS = 10;
     public static final int FIELD_RIGID_AREA_HEIGHT = 5;
-    public static final Dimension FIELD_DIMENSIONS = new Dimension(WIDTH - 100, 30);
+    public static final Dimension FIELD_DIMENSIONS = new Dimension(WIDTH / 2, 30);
 
     public static HashMap<String, Component> components = new HashMap<String, Component>();
 
@@ -17,6 +17,7 @@ public class MembershipForm extends JFrame {
         setTitle("Club Membership");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(WIDTH, HEIGHT);
+        setResizable(false);
     }
 
     private void createPanelAndAddToTabbedPane(String panelTitle, JTabbedPane tabbedPane) {
@@ -86,12 +87,11 @@ public class MembershipForm extends JFrame {
      */
     public JPanel createMembershipManagementPanel() {
         JTable membershipTable = new JTable(new MembershipTableModel());
-        System.out.println(membershipTable.getTableHeader());
         JScrollPane tableScrollPane = new JScrollPane(membershipTable);
         JPanel membershipManagementPanel = new JPanel();
         membershipManagementPanel.setLayout(new BorderLayout());
         membershipManagementPanel.add(tableScrollPane, BorderLayout.CENTER);
-        
+
         return membershipManagementPanel;
     }
 

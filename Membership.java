@@ -227,6 +227,33 @@ public class Membership {
         return members;
     }
 
+
+    /**
+     * Updates the current customerlist.csv file by overwriting it with the data provided as parameter.
+     * This function is mainly used when the user is editing data through {@link MembershipTableModel}.
+     * Each row of the data list will have the following columns:
+     * "ID", "First Name", "Last Name", "Date of Birth", "Gender", "Address", "Telephone Number",
+     * "Type", "Start Date", "End Date", "Price"
+     *
+     * @param data data to be overwritten into the customerlist.csv file
+     */
+    public static void updateData(List<List<String>> data) throws IOException {
+        FileWriter fw = new FileWriter("customerlist.csv", false);
+        for (int row = 0; row < data.size(); ++row) {
+            // write all columns except for the last one
+            for (int col = 0; col < data.get(row).size() - 1; ++col) {
+                fw.append(data.get(row).get(col));
+                fw.append(",");
+            }
+            // write last column
+            fw.append(data.get(row).get(data.get(row).size() - 1));
+            fw.append('\n');
+        }
+
+        fw.flush();
+        fw.close();
+    }
+
     /**
      * Loops over the ids of the customer list to check if the passed id parameter is equal to one of them.
      * @param id id to be checked against the ids in the customer list
