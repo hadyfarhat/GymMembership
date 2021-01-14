@@ -20,7 +20,7 @@ public class PersonalRegistrationFormPanel extends RegistrationFormPanel {
         List<JPanel> panels = Arrays.asList(
                 new FormTextFieldPanel("First Name"),
                 new FormTextFieldPanel("Last Name"),
-                new FormDateFieldPanel("Date", "dd/MM/yy"),
+                new FormDateFieldPanel("Date", "dd/MM/yyyy"),
                 new FormRadioButtonsPanel("Gender", "Male", "Female")
         );
 

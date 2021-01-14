@@ -22,7 +22,7 @@ public class MembershipRegistrationForm extends RegistrationFormPanel {
 
         List<JPanel> panels = Arrays.asList(
                 new FormRadioButtonsPanel("Membership Type", "Individual", "Family"),
-                new FormDateFieldPanel("Start Date", "dd/MM/yy"),
+                new FormDateFieldPanel("Start Date", "dd/MM/yyyy"),
                 new FormComboBoxFieldPanel("Duration", durationPeriods)
         );
 

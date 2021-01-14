@@ -41,6 +41,7 @@ public class Member {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
+        calculateAge();
     }
 
     public String getGender() {
@@ -71,6 +72,9 @@ public class Member {
         return age;
     }
 
+    /**
+     * Calculates age based on the 1st of September of the current year
+     */
     private void calculateAge() {
         LocalDate today = LocalDate.now();
         LocalDate september1stOfCurrentYear = LocalDate.of(today.getYear(), Month.SEPTEMBER, 1);
@@ -90,7 +94,7 @@ public class Member {
     private String firstName;
     private String lastName;
     private LocalDate dob;
-    public static DateTimeFormatter dobFormatter =  DateTimeFormatter.ofPattern("dd/MM/yy");
+    public static DateTimeFormatter dobFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private String gender;
     private String address;
     private String telephoneNumber;

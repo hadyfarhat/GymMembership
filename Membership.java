@@ -279,7 +279,7 @@ public class Membership {
 
     private LocalDate startDate;
     private LocalDate endDate;
-    public static DateTimeFormatter dateFormatter =  DateTimeFormatter.ofPattern("dd/MM/yy");
+    public static DateTimeFormatter dateFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private String type;
     private int price;
     private Member member;

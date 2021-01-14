@@ -1,8 +1,11 @@
+import javafx.util.Pair;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -77,28 +80,22 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
             }
         }
 
-        System.out.println("Member details");
-        System.out.println("First Name: " + member.getFirstName());
-        System.out.println("Last Name: " + member.getLastName());
-        System.out.println("Date of birth: " + member.getFormattedDob());
-        System.out.println("Telephone Number: " + member.getTelephoneNumber());
-        System.out.println("Address: " + member.getAddress());
-        System.out.println("Gender: " + member.getGender());
-
-        System.out.println("Membership details");
-        System.out.println("Type: " + membership.getType());
-        System.out.println("Start Date: " + membership.getFormattedStartDate());
-        System.out.println("End Date: " + membership.getFormattedEndDate());
-        System.out.println("Price: £" + membership.getPrice());
-
         membership.setMember(member);
-        try {
-            membership.addToFile();
-            MembershipForm.clearFormComponents();
-            MembershipManagementPanel.refreshTableData();
-            JOptionPane.showMessageDialog(parentComponent, "Member has been registered");
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
+
+        boolean membershipIsValid = Validator.membershipIsValid(membership);
+        if (!membershipIsValid){
+            System.out.println("Membership is not valid. Customer age: " + member.getAge());
+            String validationMessage = Validator.getValidationMessage(membership);
+            JOptionPane.showMessageDialog(parentComponent, validationMessage);
+        } else {
+            try {
+                membership.addToFile();
+                MembershipForm.clearFormComponents();
+                MembershipManagementPanel.refreshTableData();
+                JOptionPane.showMessageDialog(parentComponent, "Member has been registered");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
     }
 
