@@ -71,11 +71,15 @@ public class Membership {
 
     /**
      * Appends membership to csv file
+     *
+     * @return id the newly generated id for the new member
      * @throws IOException
      */
-    public void addToFile() throws IOException {
+    public int addToFile() throws IOException {
+        int id = generateUniqueId();
+
         FileWriter fw = new FileWriter("customerlist.csv", true);
-        fw.append(Integer.toString(generateUniqueId()));
+        fw.append(Integer.toString(id));
         fw.append(',');
         fw.append(member.getFirstName());
         fw.append(',');
@@ -100,6 +104,8 @@ public class Membership {
 
         fw.flush();
         fw.close();
+
+        return id;
     }
 
 

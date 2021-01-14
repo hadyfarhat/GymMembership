@@ -42,7 +42,7 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
                 case "Last Name":
                     member.setLastName(getTextFromTextField(field));
                     break;
-                case "Date":
+                case "DOB":
                     LocalDate date = LocalDate.parse(getTextFromTextField(field), Member.dobFormatter);
                     member.setDob(date);
                     break;
@@ -84,15 +84,15 @@ public class RegistrationFormSubmissionActionListener implements ActionListener 
 
         boolean membershipIsValid = Validator.membershipIsValid(membership);
         if (!membershipIsValid){
-            System.out.println("Membership is not valid. Customer age: " + member.getAge());
             String validationMessage = Validator.getValidationMessage(membership);
             JOptionPane.showMessageDialog(parentComponent, validationMessage);
         } else {
             try {
-                membership.addToFile();
+                int id = membership.addToFile();
                 MembershipForm.clearFormComponents();
                 MembershipManagementPanel.refreshTableData();
-                JOptionPane.showMessageDialog(parentComponent, "Member has been registered");
+                JOptionPane.showMessageDialog(parentComponent,
+                        "Member has been registered. Please use the following ID to check in: " + id);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
