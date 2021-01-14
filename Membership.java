@@ -108,6 +108,72 @@ public class Membership {
         return id;
     }
 
+    /**
+     * Checks if the end date of the membership is >= today's date
+     * If it's not, then the membership is not valid.
+     *
+     * @param id id of the membership to be checked
+     * @return whether the membership is valid or not
+     */
+    public static boolean membershipIsValid(int id) {
+        Membership membership = getMembershipFromDatabase(id);
+        LocalDate endDate = membership.getEndDate();
+        // if end date is equal to null then either the id wasn't found or the start date wasn't set
+        if (endDate != null) {
+            LocalDate todaysDate = LocalDate.now();
+            // if today's date is before end date
+            if (todaysDate.compareTo(endDate) < 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Gets the membership details based on its id from the customer list csv file.
+     * It loops through all the records until it finds the provided id. It then fills in the membership details
+     * based on the found record and returns it.
+     *
+     * @param id id of the membership to be checked
+     * @return membership
+     */
+    public static Membership getMembershipFromDatabase(int id) {
+        HashMap<Integer, HashMap<String, String>> allMembers = getAllMembers();
+        Membership membership = new Membership();
+
+        for (Map.Entry<Integer, HashMap<String, String>> memberRow : allMembers.entrySet()) {
+            int rowId = memberRow.getKey();
+            if (rowId == id) {
+                HashMap<String, String> memberData = memberRow.getValue();
+                    Member member = new Member();
+                    member.setFirstName(memberData.get("firstName"));
+                    member.setLastName(memberData.get("lastName"));
+                    if (!memberData.get("dob").equals("")) {
+                        LocalDate dob = LocalDate.parse(memberData.get("dob"), Member.dobFormatter);
+                        member.setDob(dob);
+                    }
+                    member.setGender(memberData.get("gender"));
+                    member.setAddress(memberData.get("address"));
+                    member.setTelephoneNumber(memberData.get("telephoneNumber"));
+
+                    membership.setMember(member);
+
+                    membership.setType(memberData.get("type"));
+                    if (!memberData.get("startDate").equals("") && !memberData.get("endDate").equals("")) {
+                        LocalDate startDate = LocalDate.parse(memberData.get("startDate"), Membership.dateFormatter);
+                        membership.setStartDate(startDate);
+                        LocalDate endDate = LocalDate.parse(memberData.get("endDate"), Membership.dateFormatter);
+                        membership.setEndDate(endDate);
+                    }
+                    if (!memberData.get("price").equals("")) {
+                        membership.setPrice(Integer.parseInt(memberData.get("price")));
+                    }
+            }
+        }
+
+        return membership;
+    }
 
     /**
      * Generate a random number between 10,000 and 100,000.
@@ -280,7 +346,9 @@ public class Membership {
     }
 
     public static void main(String[] args) {
-        System.out.println("ID exists: " + idExists(416100));
+        boolean membershipIsValid = membershipIsValid(17946);
+        System.out.println(membershipIsValid);
+        System.out.println(membershipIsValid(41610));
     }
 
     private LocalDate startDate;
