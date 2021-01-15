@@ -5,13 +5,14 @@ import java.io.IOException;
 
 /**
  * Represents the Action Listener for the Check In form button.
- * It's main responsibilities are to validate ids and memberships
+ * Its main responsibilities are to validate ids and memberships
  */
 public class CheckInFormActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JTextField idField = (JTextField) MembershipForm.components.get("ID");
+
 
         // Check if it's a Visitor
         if (idField.getText().equals("VISITOR")) {
@@ -67,14 +68,20 @@ public class CheckInFormActionListener implements ActionListener {
      */
     private boolean validateIdAndMembership(JTextField idField) {
         boolean isValid = true;
-        int id = Integer.parseInt(idField.getText());
 
-        if (!Validator.idIsValid(id)) {
+        try {
+            int id = Integer.parseInt(idField.getText());
+
+            if (!Validator.idIsValid(id)) {
+                isValid = false;
+                JOptionPane.showMessageDialog(idField, "ID was not found in the database");
+            } else if (!Membership.membershipIsValid(id)) {
+                isValid = false;
+                JOptionPane.showMessageDialog(idField, "Membership has expired");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(idField, "Invalid ID");
             isValid = false;
-            JOptionPane.showMessageDialog(idField, "ID was not found in the database");
-        } else if (!Membership.membershipIsValid(id)) {
-            isValid = false;
-            JOptionPane.showMessageDialog(idField, "Membership has expired");
         }
 
         return isValid;

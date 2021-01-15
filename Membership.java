@@ -346,9 +346,7 @@ public class Membership {
     }
 
     public static void main(String[] args) {
-        boolean membershipIsValid = membershipIsValid(17946);
-        System.out.println(membershipIsValid);
-        System.out.println(membershipIsValid(41610));
+        generateMissingIds();
     }
 
     private LocalDate startDate;

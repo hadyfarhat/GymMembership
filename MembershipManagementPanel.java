@@ -75,7 +75,6 @@ public class MembershipManagementPanel extends JPanel implements ActionListener,
     @Override
     public void keyPressed(KeyEvent e) {
         String searchString = this.search.getText() + e.getKeyChar();
-        System.out.println(searchString);
         if (searchString.trim().length() == 0) {
             sorter.setRowFilter(null);
         } else {

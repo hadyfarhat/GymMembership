@@ -17,7 +17,6 @@ public class MembershipForm extends JFrame {
         setTitle("Club Membership");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(WIDTH, HEIGHT);
-        setResizable(false);
     }
 
     private void createPanelAndAddToTabbedPane(String panelTitle, JTabbedPane tabbedPane) {
@@ -41,14 +40,14 @@ public class MembershipForm extends JFrame {
         tabbedPane.setMaximumSize(new Dimension(
                 MembershipForm.WIDTH / 2, MembershipForm.HEIGHT / 2));
 
-        String[] formSectionNames = {"Personal", "Contact", "Health", "Membership"};
+        String[] formSectionNames = {"Personal", "Contact", "Membership"};
         for (String name : formSectionNames) {
             createPanelAndAddToTabbedPane(name, tabbedPane);
         }
 
         tabbedPane.setComponentAt(0, new PersonalRegistrationFormPanel());
         tabbedPane.setComponentAt(1, new ContactRegistrationFormPanel());
-        tabbedPane.setComponentAt(3, new MembershipRegistrationForm());
+        tabbedPane.setComponentAt(2, new MembershipRegistrationForm());
 
         JButton button = new JButton("Register");
         button.addActionListener(new RegistrationFormSubmissionActionListener(tabbedPane));
